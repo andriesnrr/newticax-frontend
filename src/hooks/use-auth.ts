@@ -25,7 +25,6 @@ export const useAuth = (options: UseAuthOptions = {}) => {
   const router = useRouter();
 
   useEffect(() => {
-    // Fetch user data if needed - using checkAuth instead of getMe
     if (!isInitialized && !isLoading) {
       console.log('🔍 useAuth: Checking authentication status...');
       checkAuth().catch(error => {
@@ -37,7 +36,7 @@ export const useAuth = (options: UseAuthOptions = {}) => {
 
   useEffect(() => {
     // Skip redirection if still loading or not initialized
-    if (isLoading || !isInitialized) return;
+    if (!isInitialized) return;
 
     console.log('🚦 useAuth: Checking redirect conditions:', {
       requireAuth,
@@ -49,7 +48,7 @@ export const useAuth = (options: UseAuthOptions = {}) => {
     });
 
     // Redirect if authentication is required but user is not authenticated
-    if (requireAuth && !isAuthenticated) {
+    if (!isAuthenticated) {
       console.log('🔒 useAuth: Redirecting to login - auth required');
       router.push(redirectTo);
       return;
@@ -95,5 +94,6 @@ export const useAuth = (options: UseAuthOptions = {}) => {
     isLoading: isLoading || !isInitialized,
     isAdmin: user?.role === 'ADMIN',
     isAuthor: user?.role === 'AUTHOR' || user?.role === 'ADMIN',
+    checkAuth,
   };
 };

@@ -71,7 +71,7 @@ const preferencesFormSchema = z.object({
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState('profile');
-  const { user, getMe } = useAuth({
+  const { user, checkAuth } = useAuth({
     requireAuth: true,
     redirectTo: '/login',
   });
@@ -121,7 +121,7 @@ export default function ProfilePage() {
     try {
       await updateProfile(data);
       toast.success('Profile updated successfully');
-      getMe(); // Refresh user data
+      await checkAuth(); // Refresh user data
     } catch (error) {
       toast.error('Failed to update profile');
     }
@@ -162,7 +162,7 @@ export default function ProfilePage() {
       });
       
       toast.success('Preferences updated successfully');
-      getMe(); // Refresh user data
+      checkAuth(); // Refresh user data
     } catch (error) {
       toast.error('Failed to update preferences');
     }

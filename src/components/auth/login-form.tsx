@@ -43,12 +43,13 @@ export function LoginForm() {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       setServerError(null);
-      await login(data);
+      await login(data.email, data.password);
       router.push('/dashboard');
     } catch (error: any) {
       setServerError(error.response?.data?.message || 'Login gagal. Periksa kredensial Anda.');
     }
   };
+
 
   return (
     <Card className="w-full">

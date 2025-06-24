@@ -384,6 +384,7 @@ export const useAuthStore = create<AuthState>()(
         },
 
         checkAuth: async () => {
+          console.log('🟢 [checkAuth] Starting...');
           // CRITICAL: Prevent multiple simultaneous auth checks
           if (authCheckInProgress) {
             console.log('⏳ Auth check already in progress, waiting...');
@@ -430,6 +431,7 @@ export const useAuthStore = create<AuthState>()(
               });
 
               if (response.data?.success && response.data?.data) {
+                console.log('🧠 [checkAuth] Setting authenticated Zustand state...');
                 const user = response.data.data;
                 
                 set({
@@ -496,6 +498,7 @@ export const useAuthStore = create<AuthState>()(
             } finally {
               authCheckInProgress = false;
               authCheckPromise = null;
+              console.log('🟣 [checkAuth] Finished');
             }
           })();
 
