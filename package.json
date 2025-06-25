@@ -10,20 +10,15 @@
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
 
-    // ===== TESTING SCRIPTS =====
-    
-    // Unit Tests
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:unit": "jest --testPathPattern=__tests__/unit",
     "test:unit:watch": "jest --testPathPattern=__tests__/unit --watch",
     
-    // Integration Tests  
     "test:integration": "jest --testPathPattern=__tests__/integration",
     "test:integration:watch": "jest --testPathPattern=__tests__/integration --watch",
     
-    // E2E Tests
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
@@ -33,26 +28,21 @@
     "test:e2e:webkit": "playwright test --project=webkit",
     "test:e2e:mobile": "playwright test --project='Mobile Chrome'",
     
-    // Combined Testing
     "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "test:ci": "npm run lint && npm run type-check && npm run test:unit && npm run test:integration",
     
-    // Test Reports
     "test:report": "playwright show-report",
     "test:coverage:open": "open coverage/lcov-report/index.html",
     
-    // ===== CI/CD SCRIPTS =====
     "ci:install": "npm ci",
     "ci:build": "npm run type-check && npm run lint && npm run build",
     "ci:test": "npm run test:ci",
     "ci:test:full": "npm run test:all",
     
-    // ===== DEVELOPMENT SCRIPTS =====
     "dev:test": "concurrently \"npm run dev\" \"npm run test:watch\"",
     "clean": "rm -rf .next coverage test-results playwright-report",
     "clean:install": "npm run clean && rm -rf node_modules package-lock.json && npm install",
     
-    // ===== LIGHTHOUSE =====
     "lighthouse": "lhci autorun",
     "lighthouse:local": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html"
   },
@@ -62,7 +52,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    // ===== TYPESCRIPT & LINTING =====
+
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -70,7 +60,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
     
-    // ===== TESTING LIBRARIES =====
+ 
     "@testing-library/react": "^14.0.0",
     "@testing-library/jest-dom": "^6.1.0", 
     "@testing-library/user-event": "^14.4.0",
@@ -78,14 +68,14 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     
-    // ===== E2E TESTING =====
+
     "@playwright/test": "^1.40.0",
     
-    // ===== UTILITIES =====
+
     "concurrently": "^8.2.0",
     "wait-on": "^7.0.0",
     
-    // ===== LIGHTHOUSE =====
+
     "@lhci/cli": "^0.12.0"
   }
 }
