@@ -387,4 +387,4 @@ export const testData = {
   validPassword: 'SecurePass123!',
   weakPassword: '123',
   longText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '.repeat(10)
-}
+}   
