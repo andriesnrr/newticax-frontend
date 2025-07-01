@@ -7,9 +7,9 @@ import { useAuthStore } from '@/store/auth-store';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
-import { 
-  Search, 
-  Menu, 
+import {
+  Search,
+  Menu,
   X,
   Moon,
   Sun,
@@ -34,7 +34,7 @@ export function Header() {
   const [searchValue, setSearchValue] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
-  
+
   const pathname = usePathname();
   const router = useRouter();
   const { theme, setTheme } = useTheme();
@@ -82,9 +82,8 @@ export function Header() {
   };
 
   return (
-    <header className={`sticky top-0 z-40 w-full transition-all ${
-      isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm' : 'bg-white dark:bg-gray-900'
-    }`}>
+    <header className={`sticky top-0 z-40 w-full transition-all ${isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm' : 'bg-white dark:bg-gray-900'
+      }`}>
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -116,39 +115,22 @@ export function Header() {
           {/* Actions */}
           <div className="flex items-center gap-1">
             {/* Search */}
-            {isSearchOpen ? (
-              <form onSubmit={handleSearchSubmit} className="relative md:w-80">
-                <Input
-                  type="search"
-                  placeholder={t('general.search') + '...'}
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  className="pr-8"
-                  autoFocus
-                />
-                <Button 
-                  size="icon" 
-                  variant="ghost" 
-                  className="absolute right-0 top-0" 
-                  onClick={() => setIsSearchOpen(false)}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </form>
-            ) : (
-              <Button size="icon" variant="ghost" onClick={() => setIsSearchOpen(true)}>
-                <Search className="h-5 w-5" />
-              </Button>
-            )}
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => router.push('/search')}
+            >
+              <Search className="h-5 w-5" />
+            </Button>
 
             {/* Language Selector */}
             <LanguageSelector />
 
             {/* Theme Toggle */}
             {mounted && (
-              <Button 
-                size="icon" 
-                variant="ghost" 
+              <Button
+                size="icon"
+                variant="ghost"
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               >
                 {theme === 'dark' ? (
@@ -164,7 +146,7 @@ export function Header() {
               <>
                 {/* Notifications */}
                 <NotificationDropdown />
-                
+
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="sm" className="relative h-8 w-8 rounded-full">
@@ -225,9 +207,9 @@ export function Header() {
             )}
 
             {/* Mobile Menu Toggle */}
-            <Button 
-              size="icon" 
-              variant="ghost" 
+            <Button
+              size="icon"
+              variant="ghost"
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -256,7 +238,7 @@ export function Header() {
             <Button variant="ghost" className="w-full justify-start" asChild>
               <Link href="/category/sports">Sports</Link>
             </Button>
-            
+
             {!isAuthenticated && (
               <>
                 <Button variant="ghost" className="w-full justify-start" asChild>
