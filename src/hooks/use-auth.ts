@@ -47,8 +47,7 @@ export const useAuth = (options: UseAuthOptions = {}) => {
       userRole: user?.role,
     });
 
-    // Redirect if authentication is required but user is not authenticated
-    if (!isAuthenticated) {
+    if (requireAuth && !isAuthenticated) {
       console.log('🔒 useAuth: Redirecting to login - auth required');
       router.push(redirectTo);
       return;
